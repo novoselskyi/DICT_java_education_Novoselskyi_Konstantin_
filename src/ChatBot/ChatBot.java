@@ -59,5 +59,33 @@ public class ChatBot {
 
         // Комітимо четвертий етап
         System.out.println("ChatBot 4-th stage");
+
+        // Проводимо тест
+        System.out.println("Let's test your programming knowledge.");
+        System.out.println("Why do we use methods in Java?");
+        System.out.println("1. To repeat a statement multiple times.");
+        System.out.println("2. To decompose a program into several small subroutines.");
+        System.out.println("3. To determine the execution time of a program.");
+        System.out.println("4. To interrupt the execution of a program.");
+        System.out.println("Your answer:");
+
+        // Зчитуємо відповідь користувача
+        int userAnswer = scanner.nextInt();
+
+        // Перевіряємо відповідь та продовжуємо тест, поки не буде правильно
+        while (userAnswer != 2) {
+            System.out.println("Your answer is incorrect. Please try again.");
+            System.out.println("Your answer:");
+            userAnswer = scanner.nextInt();
+        }
+
+        // Виводимо повідомлення про правильну відповідь
+        System.out.println("Congratulations! That's correct.");
+
+        // Комітимо п'ятий етап
+        System.out.println("ChatBot 5-th stage");
+
+        // Завершуємо програму
+        System.out.println("Goodbye, have a nice day!");
     }
 }
