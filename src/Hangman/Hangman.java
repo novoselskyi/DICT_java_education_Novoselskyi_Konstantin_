@@ -40,12 +40,17 @@ public class Hangman {
 
             // Перевірка, чи літера зустрічається в слові
             if (secretWord.indexOf(letter) != -1) {
-                System.out.println("The letter is in the word!");
-                // Заміна "-" на вірні літери
-                for (int i = 0; i < secretWord.length(); i++) {
-                    if (secretWord.charAt(i) == letter) {
-                        guessedWord.setCharAt(i, letter);
+                // Перевірка, чи літера вже була вгадана
+                if (guessedWord.toString().indexOf(letter) == -1) {
+                    System.out.println("The letter is in the word!");
+                    // Заміна "-" на вірні літери
+                    for (int i = 0; i < secretWord.length(); i++) {
+                        if (secretWord.charAt(i) == letter) {
+                            guessedWord.setCharAt(i, letter);
+                        }
                     }
+                } else {
+                    System.out.println("No improvements");
                 }
             } else {
                 System.out.println("That letter doesn't appear in the word");
@@ -55,9 +60,10 @@ public class Hangman {
 
         // Вивід результату гри
         if (guessedWord.toString().equals(secretWord)) {
-            System.out.println("Congratulations! You survived!");
+            System.out.println("You guessed the word!");
+            System.out.println("You survived!");
         } else {
-            System.out.println("Thanks for playing! We'll see how well you did in the next stage.");
+            System.out.println("Thanks for playing! You lost!");
         }
     }
 }
