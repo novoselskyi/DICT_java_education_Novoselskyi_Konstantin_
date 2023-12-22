@@ -16,8 +16,18 @@ public class Hangman {
         int randomIndex = random.nextInt(words.length);
         String secretWord = words[randomIndex];
 
+        // Вивід підказки гравцеві (перші 2 літери)
+        StringBuilder hint = new StringBuilder(secretWord.length());
+        for (int i = 0; i < secretWord.length(); i++) {
+            if (i < 2) {
+                hint.append(secretWord.charAt(i));
+            } else {
+                hint.append("-");
+            }
+        }
+
         // Вивід вказівки для гравця
-        System.out.print("Guess the word: > ");
+        System.out.print("Guess the word " + hint + ": > ");
 
         // Створення об'єкта Scanner для зчитування введення користувача
         Scanner scanner = new Scanner(System.in);
