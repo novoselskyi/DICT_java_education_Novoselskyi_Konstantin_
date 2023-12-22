@@ -5,28 +5,21 @@ public class TicTacToe {
         char[][] board = createBoard();
         printBoard(board);
 
+        char currentPlayer = 'X';
+
         while (true) {
-            makeMove(board, 'X');
+            makeMove(board, currentPlayer);
             printBoard(board);
 
-            if (checkGameStatus(board, 'X')) {
-                System.out.println("Player X wins!");
+            if (checkGameStatus(board, currentPlayer)) {
+                System.out.println("Player " + currentPlayer + " wins!");
                 break;
             } else if (isBoardFull(board)) {
                 System.out.println("It's a draw!");
                 break;
             }
 
-            makeMove(board, 'O');
-            printBoard(board);
-
-            if (checkGameStatus(board, 'O')) {
-                System.out.println("Player O wins!");
-                break;
-            } else if (isBoardFull(board)) {
-                System.out.println("It's a draw!");
-                break;
-            }
+            currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
         }
     }
 
