@@ -47,5 +47,17 @@ public class ChatBot {
 
         // Комітимо третій етап
         System.out.println("ChatBot 3-rd stage");
+
+        // Запитуємо користувача введення числа
+        System.out.println("Now I will prove to you that I can count to any number you want!");
+        int userInp = scanner.nextInt();
+
+        // Підраховуємо до введеного числа та виводимо результат
+        for (int i = 1; i <= userInp; i++) {
+            System.out.println(i + "!");
+        }
+
+        // Комітимо четвертий етап
+        System.out.println("ChatBot 4-th stage");
     }
 }
