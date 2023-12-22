@@ -16,30 +16,48 @@ public class Hangman {
         int randomIndex = random.nextInt(words.length);
         String secretWord = words[randomIndex];
 
-        // Вивід підказки гравцеві (перші 2 літери)
-        StringBuilder hint = new StringBuilder(secretWord.length());
+        // Створення об'єкта StringBuilder для побудови слова
+        StringBuilder guessedWord = new StringBuilder(secretWord.length());
         for (int i = 0; i < secretWord.length(); i++) {
-            if (i < 2) {
-                hint.append(secretWord.charAt(i));
-            } else {
-                hint.append("-");
-            }
+            guessedWord.append("-");
         }
 
-        // Вивід вказівки для гравця
-        System.out.print("Guess the word " + hint + ": > ");
+        // Кількість спроб
+        int attemptsLeft = 8;
 
         // Створення об'єкта Scanner для зчитування введення користувача
         Scanner scanner = new Scanner(System.in);
 
-        // Зчитування введеного слова від гравця
-        String playerGuess = scanner.nextLine();
+        // Гра продовжується, доки є спроби та слово не вгадане
+        while (attemptsLeft > 0 && guessedWord.toString().contains("-")) {
+            // Вивід поточного стану слова та спроб
+            System.out.println("Current word: " + guessedWord);
+            System.out.println("Attempts left: " + attemptsLeft);
 
-        // Перевірка, чи вгадане слово вірне
-        if (playerGuess.equalsIgnoreCase(secretWord)) {
-            System.out.println("You survived!");
+            // Зчитування введеної літери від гравця
+            System.out.print("Input a letter: > ");
+            char letter = scanner.next().charAt(0);
+
+            // Перевірка, чи літера зустрічається в слові
+            if (secretWord.indexOf(letter) != -1) {
+                System.out.println("The letter is in the word!");
+                // Заміна "-" на вірні літери
+                for (int i = 0; i < secretWord.length(); i++) {
+                    if (secretWord.charAt(i) == letter) {
+                        guessedWord.setCharAt(i, letter);
+                    }
+                }
+            } else {
+                System.out.println("That letter doesn't appear in the word");
+                attemptsLeft--;
+            }
+        }
+
+        // Вивід результату гри
+        if (guessedWord.toString().equals(secretWord)) {
+            System.out.println("Congratulations! You survived!");
         } else {
-            System.out.println("You lost!");
+            System.out.println("Thanks for playing! We'll see how well you did in the next stage.");
         }
     }
 }
