@@ -6,20 +6,35 @@ public class CoffeeMachine {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Write how many ml of water the coffee machine has:");
+        int water = scanner.nextInt();
+        System.out.println("Write how many ml of milk the coffee machine has:");
+        int milk = scanner.nextInt();
+        System.out.println("Write how many grams of coffee beans the coffee machine has:");
+        int coffeeBeans = scanner.nextInt();
         System.out.println("Write how many cups of coffee you will need:");
         int cups = scanner.nextInt();
 
-        makeCoffee("espresso", cups);
+        checkResources(water, milk, coffeeBeans, cups);
     }
 
-    public static void makeCoffee(String coffeeType, int cups) {
-        int water = cups * 200;
-        int milk = cups * 50;
-        int coffeeBeans = cups * 15;
+    public static void checkResources(int availableWater, int availableMilk, int availableCoffeeBeans, int cups) {
+        int waterPerCup = 200;
+        int milkPerCup = 50;
+        int coffeeBeansPerCup = 15;
 
-        System.out.println("For " + cups + " cups of " + coffeeType + " you will need:");
-        System.out.println(water + " ml of water");
-        System.out.println(milk + " ml of milk");
-        System.out.println(coffeeBeans + " g of coffee beans");
+        int maxCupsWater = availableWater / waterPerCup;
+        int maxCupsMilk = availableMilk / milkPerCup;
+        int maxCupsCoffeeBeans = availableCoffeeBeans / coffeeBeansPerCup;
+
+        int maxCupsPossible = Math.min(maxCupsWater, Math.min(maxCupsMilk, maxCupsCoffeeBeans));
+
+        if (cups == 0) {
+            System.out.println("Yes, I can make that amount of coffee (and even " + (maxCupsPossible - 1) + " more than that)");
+        } else if (cups <= maxCupsPossible) {
+            System.out.println("Yes, I can make that amount of coffee");
+        } else {
+            System.out.println("No, I can make only " + maxCupsPossible + " cups of coffee");
+        }
     }
 }
